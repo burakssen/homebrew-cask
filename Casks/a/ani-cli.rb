@@ -7,10 +7,9 @@ cask "ani-cli" do
     desc "A command-line interface for anime"
     homepage "https://github.com/pystardust/ani-cli"
   
-    app "ani-cli.app"
+    binary "ani-cli", target: "#{ENV["HOME"]}/.local/bin/ani-cli"
   
     # Optional: Uninstalling
-    uninstall quit: "com.pystardust.ani-cli"
-  
-    # Optional: You can add additional instructions here
+    uninstall delete: "#{ENV["HOME"]}/.local/bin/ani-cli"
 end
+  
