@@ -1,7 +1,7 @@
 cask "artixgamelauncher" do
-    version "2.1.2"
-    sha256 "bec7a75bba4e11630233a7e66ad5af6d6bf82b9efde77189363d570fe75f59d0"
-
+    version :latest
+    sha256 :no_check
+    
     url "https://launch.artix.com/latest/Artix%20Game%20Launcher.dmg"
     name "Artix Game Launcher"
     desc "One app. All your favorite Artix games."
