@@ -10,7 +10,7 @@ cask "artixgamelauncher" do
     app "Artix Game Launcher.app"
 
     zap trash: [
-        "~/Library/Application Support/Artix Game Launcher",
+        "~/Library/Application Support/artixgamelauncher",
         "~/Library/Preferences/com.burakssen.artixgamelauncher.plist"
     ]
 end
