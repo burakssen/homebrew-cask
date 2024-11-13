@@ -7,7 +7,7 @@ cask "vulkan" do
     desc "Vulkan SDK"
     homepage "https://vulkan.lunarg.com/sdk/home"
   
-    app "vulkansdk-macos-1.3.296.0.app"
+    app "InstallVulkan.app"
   
     uninstall quit: "com.lunarg.vulkan"
     zap trash: [
