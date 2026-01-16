@@ -11,7 +11,7 @@ cask "quitme" do
 
   depends_on macos: ">= :big_sur"  # Adjust minimum macOS version if needed
 
-  # Build the app from source
+  # Build the app from source with ad-hoc signing
   preflight do
     system_command "xcodebuild",
                    args: [
@@ -20,6 +20,9 @@ cask "quitme" do
                      "-configuration", "Release",
                      "-derivedDataPath", "#{staged_path}/build",
                      "CONFIGURATION_BUILD_DIR=#{staged_path}",
+                     "CODE_SIGN_IDENTITY=-",
+                     "CODE_SIGN_STYLE=Manual",
+                     "DEVELOPMENT_TEAM=",
                    ]
   end
 
