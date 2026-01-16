@@ -1,17 +1,34 @@
 cask "quitme" do
-    version "1.1.1"
-    sha256 "d9da815627e6add4658ce162b7eb85d797895b34749a0100f926cac3096cc36f" # Replace with the SHA256 checksum of the zip file
+  version "1.1.1"
+  sha256 :no_check  # We're building from source, so no need to check a zip file
+
+  url "https://github.com/burakssen/QuitMe.git",
+      tag:      "v#{version}",
+      verified: "github.com/burakssen/QuitMe"
+  name "QuitMe"
+  desc "A brief description of QuitMe"
+  homepage "https://github.com/burakssen/QuitMe"
+
+  depends_on macos: ">= :big_sur"  # Adjust minimum macOS version if needed
+
+  # Build the app from source
+  preflight do
+    system_command "xcodebuild",
+                   args: [
+                     "-project", "#{staged_path}/QuitMe.xcodeproj",  # or QuitMe.xcworkspace if using workspace
+                     "-scheme", "QuitMe",
+                     "-configuration", "Release",
+                     "-derivedDataPath", "#{staged_path}/build",
+                     "CONFIGURATION_BUILD_DIR=#{staged_path}",
+                   ]
+  end
+
+  app "QuitMe.app"
+
+  uninstall quit: "com.burakssen.QuitMe"
   
-    url "https://github.com/burakssen/QuitMe/releases/download/v1.1.1/QuitMe.app.zip"
-    name "QuitMe"
-    desc "A brief description of QuitMe"
-    homepage "https://github.com/burakssen/QuitMe"
-  
-    app "QuitMe.app" 
-  
-    uninstall quit: "com.burakssen.QuitMe"
-    zap trash: [
-      "~/Library/Application Support/QuitMe",
-      "~/Library/Preferences/com.burakssen.QuitMe.plist",
-    ]
+  zap trash: [
+    "~/Library/Application Support/QuitMe",
+    "~/Library/Preferences/com.burakssen.QuitMe.plist",
+  ]
 end
