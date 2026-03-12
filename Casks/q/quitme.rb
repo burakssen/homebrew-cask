@@ -1,5 +1,5 @@
 cask "quitme" do
-  version "1.1.1"
+  version "1.2.0"
   sha256 :no_check  # We're building from source, so no need to check a zip file
 
   url "https://github.com/burakssen/QuitMe.git",
