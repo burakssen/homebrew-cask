@@ -11,7 +11,7 @@ cask "quitme" do
   desc "A brief description of QuitMe"
   homepage "https://github.com/burakssen/QuitMe"
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   livecheck do
     skip "Tracks the main branch"
