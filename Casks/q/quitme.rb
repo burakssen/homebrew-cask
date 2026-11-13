@@ -27,8 +27,20 @@ cask "quitme" do
           "CODE_SIGN_IDENTITY=-",
           "CODE_SIGN_STYLE=Manual",
           "DEVELOPMENT_TEAM=",
+          "-IDEPackageSupportDisableManifestSandbox=1",
+          "-IDEPackageSupportDisablePackageSandbox=1",
+          "OTHER_SWIFT_FLAGS=$(inherited) -disable-sandbox",
         ],
-        writable_paths: ["{{staged_path}}"]
+        writable_paths: [
+          "{{staged_path}}",
+          "~/Library/Caches/org.swift.swiftpm",
+          "~/Library/org.swift.swiftpm",
+          "~/Library/Caches/com.apple.dt.xcodebuild",
+        ],
+        env: {
+          "SWIFTPM_DISABLE_SANDBOX" => "1",
+        },
+        network_access: true
   end
 
   app "QuitMe.app"
