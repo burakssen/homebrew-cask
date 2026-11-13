@@ -17,17 +17,18 @@ cask "quitme" do
   end
 
   preflight_steps do
-    system_command "xcodebuild",
-                   args: [
-                     "-project", "#{staged_path}/QuitMe.xcodeproj",
-                     "-scheme", "QuitMe",
-                     "-configuration", "Release",
-                     "-derivedDataPath", "#{staged_path}/build",
-                     "CONFIGURATION_BUILD_DIR=#{staged_path}",
-                     "CODE_SIGN_IDENTITY=-",
-                     "CODE_SIGN_STYLE=Manual",
-                     "DEVELOPMENT_TEAM=",
-                   ]
+    run "/usr/bin/xcodebuild",
+        args: [
+          "-project", "{{staged_path}}/QuitMe.xcodeproj",
+          "-scheme", "QuitMe",
+          "-configuration", "Release",
+          "-derivedDataPath", "{{staged_path}}/build",
+          "CONFIGURATION_BUILD_DIR={{staged_path}}",
+          "CODE_SIGN_IDENTITY=-",
+          "CODE_SIGN_STYLE=Manual",
+          "DEVELOPMENT_TEAM=",
+        ],
+        writable_paths: ["{{staged_path}}"]
   end
 
   app "QuitMe.app"
