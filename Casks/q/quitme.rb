@@ -22,6 +22,7 @@ cask "quitme" do
           "-project", "{{staged_path}}/QuitMe.xcodeproj",
           "-scheme", "QuitMe",
           "-configuration", "Release",
+          "-destination", "generic/platform=macOS",
           "-derivedDataPath", "{{staged_path}}/build",
           "CONFIGURATION_BUILD_DIR={{staged_path}}",
           "CODE_SIGN_IDENTITY=-",
@@ -40,6 +41,8 @@ cask "quitme" do
         env: {
           "SWIFTPM_DISABLE_SANDBOX" => "1",
         },
+        print_stdout: true,
+        print_stderr: false,
         network_access: true
   end
 
